@@ -3,7 +3,7 @@
 	padding: 0;
 }
 
-.conatiner {
+.container {
 	padding: 0px;
     padding-left: 15px;
     padding-right: 15px;
@@ -54,6 +54,7 @@ nav {
     min-height: 20px;
     border: 1px solid #a9a9a9;
     border-radius: 2px;
+    margin-top: 5px;
 }
 
 .btn {
@@ -66,4 +67,96 @@ nav {
 	background: #0073aa;
 	border: 1px solid #0075aa;
 	color: #fff;
+}
+
+.form-control {
+	margin: 0.9rem 0;
+}
+
+textarea {
+	resize: none;
+}
+
+.project {
+    border: 1px solid #cecece;
+    border-radius: 3px;
+    padding: 3% 0px;
+}
+
+.col-1 {
+	flex: 0 0 8.333%;
+	max-width: 8.333%;
+}
+
+.col-2 {
+	flex: 0 0 16.666%;
+	max-width: 16.666%;
+}
+
+.col-3 {
+	flex: 0 0 25%;
+	max-width: 25%;
+}
+
+.col-4 {
+	flex: 0 0 33.33%;
+	max-width: 33.333%;
+}
+
+.col-5 {
+	flex: 0 0 41.666%;
+	max-width: 41.666%;
+}
+
+.col-6 {
+	flex: 0 0 50%;
+	max-width: 50%;
+}
+
+.col-7 {
+	flex: 0 0 58.333%;
+	max-width: 58.333%;
+}
+
+.col-8 {
+	flex: 0 0 66.6663%;
+	max-width: 66.6663%;
+}
+
+.col-9 {
+	flex: 0 0 75%;
+	max-width: 75%;
+}
+
+.col-10 {
+	flex: 0 0 83.3333%;
+	max-width: 83.3333%;
+}
+
+.col-11 {
+	flex: 0 0 91.6662%;
+	max-width: 91.6662%;
+}
+
+.col-12 {
+	flex: 0 0 99.9999%;
+	max-width: 99.9999%;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.flex-center {
+	justify-content: center;
+}
+
+.kill-anchor {
+	text-decoration: none;
+	color: unset;
+	display: flex;
 }
