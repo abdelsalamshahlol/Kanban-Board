@@ -3,6 +3,10 @@
 	padding: 0;
 }
 
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
 .container {
 	padding: 0px;
     padding-left: 15px;
@@ -54,7 +58,7 @@ nav {
     min-height: 20px;
     border: 1px solid #a9a9a9;
     border-radius: 2px;
-    margin-top: 5px;
+    /*margin-top: 5px;*/
 }
 
 .btn {
@@ -159,4 +163,123 @@ textarea {
 	text-decoration: none;
 	color: unset;
 	display: flex;
+}
+
+.k-section {
+	min-height: 100vh;
+} 
+
+.bg-green {
+	background: #c2e8ce;
+}
+
+.bg-grey {
+	background: #f2eee5;
+}
+
+.bg-orange {
+	background: #f6ad7b;
+}
+
+.bg-brown {
+	background: #be7575;
+}
+
+.no-gutter {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.form-input-grp {
+    display: inline-flex;
+    width: 100%;
+    position: relative;
+    align-items: stretch;
+}
+
+.input-grp-prepend,
+.input-grp-append {
+    display: flex;
+    width: auto;
+}
+
+.input-grp-append > button {
+    border-radius: 0px 5px 5px 0px; 
+}
+
+.input-grp-append > button,
+.input-grp-append > input {
+    margin-left: -0.3rem;
+}
+
+.input-grp-prepend >
+.input-grp-label {
+    margin-right: -0.3rem;
+    z-index: 1;
+}
+
+.input-grp-label {
+    background: dodgerblue;
+    padding: 0.500rem;
+    width: auto;
+    display: flex;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.w-75 {
+	width:75%;
+}
+
+.w-50 {
+	width: 50%;
+}
+
+.flex-center-content {
+	align-items: center;
+ 	justify-content: center;
+}
+
+.add-task-btn {
+	padding: 5px 15px;
+    font-size: 25px;
+}
+
+.add-task-field {
+	border-radius: 8px;
+    padding-left: 0.4rem;
+}
+
+.text-white {
+	color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Dosis', sans-serif;
+}
+
+.divider {
+	background: #ececec;
+    min-height: 0.1rem;
+}
+
+.sticky-note {
+	background: yellow;
+    border-radius: 2px;
+    width: 90%;
+    margin: 4% auto;
+    padding: 1.5rem;
+}
+
+.sticky-note::after {
+    border-width: 0px 8px 0px 10px;
+    content: '';
+    position: relative;
+    border-style: groove;
+    border-radius: 14px 4%;
 }
