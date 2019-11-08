@@ -372,8 +372,8 @@ footer {
 
 .modal {
 	position: absolute;
-    top: 10%;
-    left: 3%;
+    bottom: 10%;
+    right: 3%;
     width: 12rem;
     min-height: 43px;
     background: #ffffffa1;
@@ -405,4 +405,18 @@ footer {
 
 .bg-danger {
 	background: #ff1212;
+}
+
+.note-active {
+	/*opacity: 0.2;*/
+	/*animation: flashingBorder 5s infinite;*/
+	border-width: 0.12rem;
+	border-style: dashed;
+	border-color: #fff;
+}
+
+.note-hover {
+	border-width: 0.12rem;
+	border-style: solid;
+	border-color: #fff;
 }

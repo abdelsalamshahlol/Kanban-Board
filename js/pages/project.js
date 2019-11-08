@@ -4,7 +4,7 @@
 
 var projectTemplate = 
 `
-<section>
+<section id="containment-div">
 	<div class="container">
 		<div class="row">
 			<div class="col k-section bg-green no-gutter">
@@ -28,7 +28,7 @@ var projectTemplate =
 				</div>
 				<div id="backLog-column"></div>
 			</div>
-			<div class="col k-section bg-orange no-gutter">
+			<div class="col k-section bg-orange no-gutter" id="sss">
 				<div class="section-title mx-1">
 					<h2 class="text-center text-white">Doing</h2>
 					<hr class="mt-1 divider">
@@ -46,7 +46,8 @@ var projectTemplate =
 							</div>
 						</form>
 					</div>
-				</div>						
+				</div>
+				<div id="doing-column"></div>						
 			</div>
 			<div class="col k-section bg-brown no-gutter">
 				<div class="section-title mx-1">
@@ -66,7 +67,8 @@ var projectTemplate =
 							</div>
 						</form>
 					</div>
-				</div>						
+				</div>
+				<div id="done-column"></div>						
 			</div>
 		</div>
 	</div>
@@ -77,27 +79,37 @@ var projectTemplate =
 	==== Methods ====
 */
 
+
+
 $('body').on('submit', '.task-form', function(e) {
 	e.preventDefault();
 
 	let src = $(this);
 	let project_id = location.search.substring(4);
 	let project = getProject(project_id);
-	console.log({f:getProject,project,project_id})
 	let content = src.find('input').val();
 	let order = project.tasks.length;
 	let _location = '';
 
+	console.log({f:getProject,project,project_id});
+
 	if(src.attr('id') === 'backlog-from'){
 		_location = 0;
+	}else if(src.attr('id') === 'doing-form'){
+		_location = 1;
+	}else if(src.attr('id') === 'done-form'){
+		_location = 2;
 	}
 
 	let task = new Task(content, _location, project_id, order);
 	let result = project.addTask(task);
 
 	if(result){
+		let project_id = location.search.substring(4);
+		let project = getProject(project_id);
+
+		updateColumn(project, _location);
 		showModal('Success', 'Task created', '!danger');
-		updateBackLog();
 	}else{
 		showModal('Error', 'An error occured!', 'danger');
 	}
@@ -106,22 +118,42 @@ $('body').on('submit', '.task-form', function(e) {
 });
 
 
-function updateBackLog() {
-	let project_id = location.search.substring(4);
-	let project = getProject(project_id);
+function updateColumn(project, _location) {
+	let colSelector;
 
-	let backLog = project.tasks.filter(function(val, key) {
-		return val.location === 0 ;
+	let data = project.tasks.filter(function(val, key) {
+		return val.location === _location ;
 	});
 
-	console.log({backLog});
-	createTasksNode(backLog, '#backLog-column');
+	console.log({data});
+
+	if(_location === 0){
+		colSelector = '#backLog-column';
+	}else if(_location === 1){
+		colSelector = '#doing-column';
+	}else{
+		colSelector = '#done-column';
+	}
+
+	createTasksNode(data, colSelector);
+
+	$('.sticky-note').draggable({
+		// axis:"x", 
+		containment: '#containment-div',
+		stop: function(e, ui){
+			console.log('stopped');
+		}
+	});
 }
+
+// function updateDoing(project) {
+
+// }
 
 function createTasksNode(tasks, target) {
 	let html = ``;
 	$(target).html('');
-	
+
 	for (var task of tasks){
 	html += 
 		`
@@ -145,4 +177,17 @@ function createTasksNode(tasks, target) {
 	}
 	
 	$('body').find(target).append(html);
+
+	$('.k-section').droppable({
+	accept:'.sticky-note',
+	classes:{
+		"ui-droppable-active": 'note-active',
+		"ui-droppable-hover": 'note-hover'
+	},
+	drop: function(event, ui) {
+		// $(this).find('.section-title').addClass('highlight-section');
+		//Do something else with 
+		console.log({event,ui});
+	}
+});
 }

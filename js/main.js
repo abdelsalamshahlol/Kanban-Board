@@ -17,6 +17,7 @@ $('body').on('click', '.kill-anchor', function(e){
 	e.preventDefault();
 }); 
 
+
 /*
 	======== End Misc Functions ========
 */
