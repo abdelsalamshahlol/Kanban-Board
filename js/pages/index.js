@@ -14,7 +14,7 @@ var index =
 								<div class="project mx-1">
 									<div class="container">
 										<div class="row">
-											<a href="#" class="kill-anchor">
+											<a href="/project" data-name='project' class="kill-anchor">
 												<div class="col-1">
 													<span class="d-flex flex-center">
 														<i class="fas fa-tasks"></i>

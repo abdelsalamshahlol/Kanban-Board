@@ -1,7 +1,7 @@
 $(function() {
 	var routes = {
 		'/' : index,
-		'project' : project,
+		'/project' : project,
 		'/settings': settings,
 	}
 
@@ -13,20 +13,10 @@ $(function() {
 		renderPage();
 	}
 
-	/* 
-		Action Listeners Block 
-		Event Listeners Probably should be somewhere else
-	*/
-
-	//Convert that to jQuery if possible [Unfinished]
-	// On page pop state change the content
-	window.onpopstate = function(e) {
-		renderPage();
-	}
-
+	// Render the page
 	function renderPage(title, href){
 		// console.log(href , html , {routes:routes, page:routes[href]});
-		//Do the navigation and store the path in the history
+		// Do the navigation and store the path in the history
 		let html = '';
 
 		if(title !== undefined && href !== undefined){
@@ -34,12 +24,24 @@ $(function() {
 			window.history.pushState({}, title, href);
 		}else{
 			html = routes[window.location.pathname];
-			// console.log(window.location.pathname)
 		}
 
-		$('body').find('#view').html(html);
+		$('body').find('#view').html(html).hide().fadeIn('slow');
 	}
 
+	/* 
+		Action Listeners Block 
+		Event Listeners Probably should be somewhere else
+	*/
+
+
+	// List to Page pop state event
+	// Convert that to jQuery if possible 
+	window.onpopstate = function(e) {
+		renderPage();
+	}
+
+	// Listen to anchor clicks
 	$('body').on('click', 'a', function(e) {
 		let src = $(this);
 		// Check if its router related and prevent it
@@ -49,11 +51,11 @@ $(function() {
 
 		let href = src.attr('href');
 		let title = src.data('name');
-
+		console.log(href,title);
 		renderPage(title, href);
 	});
 
-	/* / Action Listeners Block */
+	/* End Action Listeners Block */
 
 
 	// Invoke render function
