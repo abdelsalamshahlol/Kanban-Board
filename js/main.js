@@ -1,79 +1,50 @@
+var projectCollec = [];
+
 /*
-	Project: Kanban Board
-	Developed by: Abdelsalam Shahlol
-	Date: 10 Nov 2019
-	
-	=== Expected Results ===
-	Single page application.
-	Muliple pages with router.
-	100% beat the challange and meet the purpose.
-	 
-	=== Build Rules ===
-	Only use HTML, CSS3, jQuery, and JavaScript ES5.
-	Only 48 hours to develop.
-	Not allowed to ask other developers to contribute.
+	======== Misc Functions ========
 */
 
-$(function() {
-	var routes = {
-		'/' : indexTemplate,
-		'/project' : projectTemplate,
-		'/settings': settingsTemplate,
-	}
+// Show errors
+function showErrors(element, text) {
+	element.addClass('has-error');
+	element.parent().append(`<small class="text-warning">${text}</small>`)
+	.hide().fadeIn();
+}
 
-	// Render the app
-	function renderApp(){
-		//This is temp using prepend
-		$('body').find('#app').prepend(nav);
-		$('body').find('#app').append(footer);
-		renderPage();
-	}
+// Modal control
+function showModal(title, content, type){
+	let modal = $('.modal'); 
+	let modalBody = $(modal).find('#modal-body');
+	let color = type === 'danger' ? 'bg-danger' : 'bg-sucess';
 
-	// Render the page
-	function renderPage(title, href){
-		// console.log(href , html , {routes:routes, page:routes[href]});
-		// Do the navigation and store the path in the history
-		let html = '';
+	modalBody.find('h3').html(title).addClass(color);
+	modalBody.find('p').html(content);
+	modal.hide().fadeIn('slow');
 
-		if(title !== undefined && href !== undefined){
-			html = routes[href];
-			window.history.pushState({}, title, href);
-		}else{
-			html = routes[window.location.pathname];
-		}
+	console.log('aaaaaaaaaaa')
+	// Sorry but I want to use ES6 to save the lexical scope using arrow functions
+	setTimeout(()=> {
+		modal.fadeOut('slow');
+	},9000);
+}
 
-		$('body').find('#view').html(html).hide().fadeIn('slow');
-	}
-
-	/* 
-		Action Listeners Block 
-		Event Listeners Probably should be somewhere else
-	*/
+/*
+	======== End Misc Functions ========
+*/
 
 
-	// List to Page pop state event
-	// Convert that to jQuery if possible 
-	window.onpopstate = function(e) {
-		renderPage();
-	}
+/*
+	======== Core Functions ========
+*/
 
-	// Listen to anchor clicks
-	$('body').on('click', 'a', function(e) {
-		let src = $(this);
-		// Check if its router related and prevent it
-		if(!src.hasClass('dont-block')){
-			e.preventDefault();
-		}
+function createProject(title, desc) {
+	let project = new Project(title, desc);
 
-		let href = src.attr('href');
-		let title = src.data('name');
-		console.log(href,title);
-		renderPage(title, href);
-	});
+	projectCollec.push(project);
+	showModal('Success', 'Project created', '!danger');
+	updateProjectList();
+}
 
-	/* End Action Listeners Block */
-
-
-	// Invoke render function
-	renderApp();
-});
+/*
+	======== End Core Functions ========
+*/

@@ -11,28 +11,6 @@ var indexTemplate =
 						 <div class="container">
 						 	<div class="col" id="projects-list-home">
 								<h2 class="mx-1 headings-style">Projects</h2>
-								<div class="project mx-1">
-									<div class="container">
-										<div class="row">
-											<a href="/project" data-name='project' class="kill-anchor">
-												<div class="col-1">
-													<span class="d-flex flex-center">
-														<i class="fas fa-tasks"></i>
-													</span>
-												</div>
-												<div class="col">
-													<h3>Project Title</h3>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-													tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-													quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-													consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-													cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-													proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-												</div>
-											</a>
-										</div>
-									</div>
-								</div>
 							</div>
 						 </div>
 					</div>
@@ -47,7 +25,7 @@ var indexTemplate =
 									</div>
 									<div class="form-control">
 										<label>Project Description <small>(Optional)</small></label>
-										<textarea class="input-field"></textarea>
+										<textarea class="input-field" name="project-desc"></textarea>
 									</div>
 									<button class="btn btn-blue mt-1">Save</button>
 								</form>
@@ -57,3 +35,53 @@ var indexTemplate =
 				</div>
 			</div>
 	</section>`;
+
+
+/*
+	==== Methods ====
+*/
+
+$('body').on('submit', '#create-new-project', function(e) {
+	e.preventDefault();
+
+	let projectTitle = $(this).find('[name="project-name"]');
+	let projectDesc = $(this).find('[name="project-desc"');
+
+	if(projectTitle.val().length === 0){
+		showErrors(projectTitle,'Project title required.');
+	}
+
+	createProject(projectTitle.val(), projectDesc.val());
+});
+
+
+function updateProjectList() {
+	let list = $('body').find('#projects-list-home > h2');
+	list.html('');
+
+	for(var project of projectCollec){
+		// console.log(project)
+		let html = 
+			`
+			<div class="project mx-1">
+				<div class="container">
+					<div class="row">
+						<a href="/project/${project.id}" data-name='project' class="kill-anchor">
+							<div class="col-1">
+								<span class="d-flex flex-center">
+									<i class="fas fa-tasks"></i>
+								</span>
+							</div>
+							<div class="col">
+								<h3>${project.title}</h3>
+								<p>${project.desc}</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			`;
+
+		list.append(html);
+	}
+}
