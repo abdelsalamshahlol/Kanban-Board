@@ -2,7 +2,7 @@
 	=== Index Page ===
 */
 
-var index = 
+var indexTemplate = 
 `	<h1 class="text-center headings-style mt-2 app-hero">Project Management</h1>
 		<section id="home-section">
 			<div class="container">

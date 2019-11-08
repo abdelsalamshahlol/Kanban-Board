@@ -2,5 +2,5 @@
 	=== Settings Page ===
 */
 
-var settings = `<h1>Settings</h1>`;
+var settingsTemplate = `<h1>Settings</h1>`;
 

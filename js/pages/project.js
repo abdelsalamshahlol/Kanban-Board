@@ -2,7 +2,7 @@
 	=== Project Page ===
 */
 
-var project = 
+var projectTemplate = 
 `
 <section>
 	<div class="container">
