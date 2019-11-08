@@ -1,0 +1,362 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+	padding: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.row {
+	display: flex;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.col {
+	flex: 1 1 40%;
+	/*border: 1px solid #000;*/
+	margin-left: 15px;
+    margin-right: 15px;
+}
+
+ul.nav-list {
+	display: inline-flex;
+}
+
+ul.nav-list > li {
+	display: block;
+    width: 50%;
+}
+
+header {
+	background: #00000080;
+}
+
+ul.nav-list > li > a {
+	color: #fff;
+	text-decoration: none;
+}
+
+nav { 
+    padding: 1.2%;
+}
+
+.mt-1 {
+	margin-top: 0.5rem;
+}
+
+.mt-2{
+	margin-top: 1rem;
+}
+
+.mx-1 {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.input-field {
+	width: 100%;
+    min-height: 20px;
+    border: 1px solid #a9a9a9;
+    border-radius: 2px;
+    /*margin-top: 5px;*/
+}
+
+.btn {
+	font-size: 0.9rem;
+    border-radius: 3px;
+    padding: 0.2rem;
+}
+
+.btn-blue {
+	background: #0073aa;
+	border: 1px solid #0075aa;
+	color: #fff;
+}
+
+.form-control {
+	margin: 0.9rem 0;
+}
+
+textarea {
+	resize: none;
+}
+
+.project {
+    border: 1px solid #cecece;
+    border-radius: 3px;
+    padding: 3% 0px;
+}
+
+.col-1 {
+	flex: 0 0 8.333%;
+	max-width: 8.333%;
+}
+
+.col-2 {
+	flex: 0 0 16.666%;
+	max-width: 16.666%;
+}
+
+.col-3 {
+	flex: 0 0 25%;
+	max-width: 25%;
+}
+
+.col-4 {
+	flex: 0 0 33.33%;
+	max-width: 33.333%;
+}
+
+.col-5 {
+	flex: 0 0 41.666%;
+	max-width: 41.666%;
+}
+
+.col-6 {
+	flex: 0 0 50%;
+	max-width: 50%;
+}
+
+.col-7 {
+	flex: 0 0 58.333%;
+	max-width: 58.333%;
+}
+
+.col-8 {
+	flex: 0 0 66.6663%;
+	max-width: 66.6663%;
+}
+
+.col-9 {
+	flex: 0 0 75%;
+	max-width: 75%;
+}
+
+.col-10 {
+	flex: 0 0 83.3333%;
+	max-width: 83.3333%;
+}
+
+.col-11 {
+	flex: 0 0 91.6662%;
+	max-width: 91.6662%;
+}
+
+.col-12 {
+	flex: 0 0 99.9999%;
+	max-width: 99.9999%;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.flex-center {
+	justify-content: center;
+}
+
+.kill-anchor {
+	text-decoration: none;
+	color: unset;
+	display: flex;
+}
+
+.k-section {
+	min-height: 100vh;
+} 
+
+.bg-green {
+	background: #c2e8ce;
+}
+
+.bg-grey {
+	background: #f2eee5;
+}
+
+.bg-orange {
+	background: #f6ad7b;
+}
+
+.bg-brown {
+	background: #be7575;
+}
+
+.no-gutter {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.form-input-grp {
+    display: inline-flex;
+    width: 100%;
+    position: relative;
+    align-items: stretch;
+}
+
+.input-grp-prepend,
+.input-grp-append {
+    display: flex;
+    width: auto;
+}
+
+.input-grp-append > button {
+    border-radius: 0px 5px 5px 0px; 
+}
+
+.input-grp-append > button,
+.input-grp-append > input {
+    margin-left: -0.3rem;
+}
+
+.input-grp-prepend >
+.input-grp-label {
+    margin-right: -0.3rem;
+    z-index: 1;
+}
+
+.input-grp-label {
+    background: dodgerblue;
+    padding: 0.500rem;
+    width: auto;
+    display: flex;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.w-75 {
+	width:75%;
+}
+
+.w-50 {
+	width: 50%;
+}
+
+.flex-center-content {
+	align-items: center;
+ 	justify-content: center;
+}
+
+.add-task-btn {
+	padding: 5px 15px;
+    font-size: 25px;
+}
+
+.add-task-field {
+	border-radius: 8px;
+    padding-left: 0.4rem;
+}
+
+.text-white {
+	color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Dosis', sans-serif;
+}
+
+.divider {
+	background: #ececec;
+    min-height: 0.1rem;
+}
+
+.sticky-note {
+	background: yellow;
+    border-radius: 2px;
+    width: 90%;
+    margin: 4% auto;
+    padding: 1.5rem;
+}
+
+.sticky-note::after,
+.sticky-note::before {
+    border-width: 0px 10px;
+    content: '';
+    position: relative;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #fff;
+}
+
+.h-100 {
+	height: 100%;
+}
+
+.flex-h-center {
+	align-items: center;
+}
+
+.btn-note-del {
+    background: none;
+    color: #f16d9a;
+    border: none;
+    font-size: 1.2rem;
+}
+
+#home-main {
+	/*background: url('https://placeimg.com/1000/1000/nature?dontCacheME=2');*/
+	background: url('https://picsum.photos/1290/720?grayscale?no=1');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 100%; */
+    /*color: #fff;*/
+}
+
+#home-section {
+	background: #ffffffe6;
+    margin: 5%;
+    padding: 2% 0;
+    border: 1px solid #afa8a8;
+    border-radius: 1px;
+}
+
+.headings-style {
+	text-transform: uppercase;
+    font-weight: 100;
+}
+
+footer {
+	position: absolute;
+    bottom: 0px;
+    background: #00000080;
+    width: 100%;
+    color: #fff;
+    padding: 0.9rem 0px;
+}
+
+.copyright {
+	font-size: 0.9rem;
+}
+
+.copyright > a {
+	color: dodgerblue;
+}
+
+.app-hero {
+	color: #fff;
+    text-shadow: 1px 1px black;
+    background: #00000080;
+    width: 33%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 0.4rem;
+    border-radius: 4px 4px;
+    font-weight: 900;
+}

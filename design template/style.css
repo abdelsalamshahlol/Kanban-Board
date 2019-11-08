@@ -35,8 +35,12 @@ ul.nav-list > li {
     width: 50%;
 }
 
+header {
+	background: #00000080;
+}
+
 ul.nav-list > li > a {
-	color: black;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -46,6 +50,10 @@ nav {
 
 .mt-1 {
 	margin-top: 0.5rem;
+}
+
+.mt-2{
+	margin-top: 1rem;
 }
 
 .mx-1 {
@@ -299,4 +307,56 @@ h1, h2, h3, h4, h5, h6 {
     color: #f16d9a;
     border: none;
     font-size: 1.2rem;
+}
+
+#home-main {
+	/*background: url('https://placeimg.com/1000/1000/nature?dontCacheME=2');*/
+	background: url('https://picsum.photos/1290/720?grayscale?no=1');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 100%; */
+    /*color: #fff;*/
+}
+
+#home-section {
+	background: #ffffffe6;
+    margin: 5%;
+    padding: 2% 0;
+    border: 1px solid #afa8a8;
+    border-radius: 1px;
+}
+
+.headings-style {
+	text-transform: uppercase;
+    font-weight: 100;
+}
+
+footer {
+	position: absolute;
+    bottom: 0px;
+    background: #00000080;
+    width: 100%;
+    color: #fff;
+    padding: 0.9rem 0px;
+}
+
+.copyright {
+	font-size: 0.9rem;
+}
+
+.copyright > a {
+	color: dodgerblue;
+}
+
+.app-hero {
+	color: #fff;
+    text-shadow: 1px 1px black;
+    background: #00000080;
+    width: 33%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 0.4rem;
+    border-radius: 4px 4px;
+    font-weight: 900;
 }

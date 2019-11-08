@@ -3,10 +3,11 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="fontawesome/all.css">
+	<link href="https://fonts.googleapis.com/css?family=Dosis|Open+Sans&display=swap" rel="stylesheet">
 	<title>Kanban Board | Home</title>
 </head>
-<body>
-	<main id="home-main">
+<body id="home-main">
+	<main>
 		<header>
 			<nav>
 				<ul class="nav-list">
@@ -15,13 +16,14 @@
 				</ul>
 			</nav>
 		</header>
-		<section>
+		<h1 class="text-center headings-style mt-2 app-hero">Project Management</h1>
+		<section id="home-section">
 			<div class="container">
 				<div class="row">
 					<div class="col">
 						 <div class="container">
 						 	<div class="col" id="projects-list-home">
-								<h2 class="mx-1">Your Projects <i class="fas fa-tasks"></i></h2>
+								<h2 class="mx-1 headings-style">Projects</h2>
 								<div class="project mx-1">
 									<div class="container">
 										<div class="row">
@@ -50,7 +52,7 @@
 					<div class="col">
 						<div class="container">
 							<div class="col">
-								<h2 class="mx-1">Start New Project</h2>
+								<h2 class="mx-1 headings-style">New Project</h2>
 								<form id="create-new-project">
 									<div class="form-control">
 										<label>Project Title</label>
@@ -68,6 +70,15 @@
 				</div>
 			</div>
 		</section>
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<small class="copyright">Developed by <a href="https://github.com/abdelsalamshahlol/" target="blank"><i class="fab fa-github"></i>Abdelsalam Shahlol</a> | All Rights Reserved &copy;</small>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</main>
 </body>
 </html>
