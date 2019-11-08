@@ -14,7 +14,7 @@ var projectTemplate =
 				</div>
 				<div class="container">
 					<div class="row flex-center-content">
-						<form class="w-75 mt-1">
+						<form class="w-75 mt-1 task-form" id="backlog-from">
 							<div class="form-input-grp">
 								<input class="input-field add-task-field" placeholder="Task" type="text" name="task">
                            		<div class="input-grp-append">
@@ -26,38 +26,7 @@ var projectTemplate =
 						</form>
 					</div>
 				</div>
-				<div class="sticky-note mx-1">
-					<div class="container">
-						<div class="row">
-							<a href="#" class="kill-anchor">
-								<div class="col-1">
-									<span class="d-flex flex-center flex-h-center h-100">
-										<button titel="Delete task" class="btn btn-note-del"><i class="fas fa-trash-alt"></i></button>
-									</span>
-								</div>
-								<div class="col">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="sticky-note mx-1">
-					<div class="container">
-						<div class="row">
-							<a href="#" class="kill-anchor">
-								<div class="col-1">
-									<span class="d-flex flex-center flex-h-center h-100">
-										<button titel="Delete task" class="btn btn-note-del"><i class="fas fa-trash-alt"></i></button>
-									</span>
-								</div>
-								<div class="col">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
+				<div id="backLog-column"></div>
 			</div>
 			<div class="col k-section bg-orange no-gutter">
 				<div class="section-title mx-1">
@@ -66,7 +35,7 @@ var projectTemplate =
 				</div>
 				<div class="container">
 					<div class="row flex-center-content">
-						<form class="w-75 mt-1">
+						<form class="w-75 mt-1 task-form" id="doing-form">
 							<div class="form-input-grp">
 								<input class="input-field add-task-field" placeholder="Task" type="text" name="task">
                            		<div class="input-grp-append">
@@ -86,7 +55,7 @@ var projectTemplate =
 				</div>
 				<div class="container">
 					<div class="row flex-center-content">
-						<form class="w-75 mt-1">
+						<form class="w-75 mt-1 task-form" id="done-form">
 							<div class="form-input-grp">
 								<input class="input-field add-task-field" placeholder="Task" type="text" name="task">
                            		<div class="input-grp-append">
@@ -103,3 +72,77 @@ var projectTemplate =
 	</div>
 </section>
 `;
+
+/*
+	==== Methods ====
+*/
+
+$('body').on('submit', '.task-form', function(e) {
+	e.preventDefault();
+
+	let src = $(this);
+	let project_id = location.search.substring(4);
+	let project = getProject(project_id);
+	console.log({f:getProject,project,project_id})
+	let content = src.find('input').val();
+	let order = project.tasks.length;
+	let _location = '';
+
+	if(src.attr('id') === 'backlog-from'){
+		_location = 0;
+	}
+
+	let task = new Task(content, _location, project_id, order);
+	let result = project.addTask(task);
+
+	if(result){
+		showModal('Success', 'Task created', '!danger');
+		updateBackLog();
+	}else{
+		showModal('Error', 'An error occured!', 'danger');
+	}
+
+	console.log({projectCollec});
+});
+
+
+function updateBackLog() {
+	let project_id = location.search.substring(4);
+	let project = getProject(project_id);
+
+	let backLog = project.tasks.filter(function(val, key) {
+		return val.location === 0 ;
+	});
+
+	console.log({backLog});
+	createTasksNode(backLog, '#backLog-column');
+}
+
+function createTasksNode(tasks, target) {
+	let html = ``;
+	$(target).html('');
+	
+	for (var task of tasks){
+	html += 
+		`
+		<div class="sticky-note mx-1">
+			<div class="container">
+				<div class="row">
+					<a href="#" class="kill-anchor">
+						<div class="col-1">
+							<span class="d-flex flex-center flex-h-center h-100">
+								<button titel="Delete task" class="btn btn-note-del"><i class="fas fa-trash-alt"></i></button>
+							</span>
+						</div>
+						<div class="col">
+							<p>${task.content}</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		`;
+	}
+	
+	$('body').find(target).append(html);
+}

@@ -23,6 +23,7 @@ $(function() {
 
 	var router = {
 		current: '/',
+		param : {}
 	};
 
 	// Render the app
@@ -41,9 +42,21 @@ $(function() {
 		let html = '';
 		console.log({router})
 		if(title !== undefined && href !== undefined){
-			html = routes[href];
+			// remove parameters from the route
+			// html = routes[href];
+			// router.current = href;
+			let _href = href;
+			if(href.includes('?')){
+				_href = href.substr(0, href.indexOf('?'));
+			}
+			let id = href.substr(href.indexOf('=') + 1);
+			let withParam = href.substr(href.indexOf('?'));
+			console.log({_href,id,withParam})
+
+			html = routes[_href];
 			router.current = href;
-			window.history.pushState({}, title, href);
+			router.param.id = id;
+			window.history.pushState({id:id}, title, href);
 		}
 		else{
 			html = routes[window.location.pathname];
@@ -62,6 +75,7 @@ $(function() {
 	// Convert that to jQuery if possible 
 	window.onpopstate = function(e) {
 		renderPage();
+		updateProjectList();
 	}
 
 	// Listen to anchor clicks
@@ -76,6 +90,8 @@ $(function() {
 		let title = src.data('name');
 		console.log(href,title);
 		renderPage(title, href);
+		updateProjectList();
+
 	});
 
 	/* End Action Listeners Block */

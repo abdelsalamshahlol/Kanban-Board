@@ -11,22 +11,11 @@ function showErrors(element, text) {
 	.hide().fadeIn();
 }
 
-// Modal control
-function showModal(title, content, type){
-	let modal = $('.modal'); 
-	let modalBody = $(modal).find('#modal-body');
-	let color = type === 'danger' ? 'bg-danger' : 'bg-sucess';
+// Disable anchor
 
-	modalBody.find('h3').html(title).addClass(color);
-	modalBody.find('p').html(content);
-	modal.hide().fadeIn('slow');
-
-	console.log('aaaaaaaaaaa')
-	// Sorry but I want to use ES6 to save the lexical scope using arrow functions
-	setTimeout(()=> {
-		modal.fadeOut('slow');
-	},9000);
-}
+$('body').on('click', '.kill-anchor', function(e){
+	e.preventDefault();
+}); 
 
 /*
 	======== End Misc Functions ========
@@ -43,6 +32,12 @@ function createProject(title, desc) {
 	projectCollec.push(project);
 	showModal('Success', 'Project created', '!danger');
 	updateProjectList();
+}
+
+function getProject(id){
+	return projectCollec.find(function(project) {
+		return project.id === parseInt(id);
+	});
 }
 
 /*

@@ -12,3 +12,20 @@ var modal = `
 	</div>
 </div>
 `;
+
+// Modal control
+function showModal(title, content, type){
+	let modal = $('.modal'); 
+	let modalBody = $(modal).find('#modal-body');
+	let color = type === 'danger' ? 'bg-danger' : 'bg-sucess';
+
+	modalBody.find('h3').html(title).addClass(color);
+	modalBody.find('p').html(content);
+	modal.hide().fadeIn('slow');
+
+	console.log('aaaaaaaaaaa')
+	// Sorry but I want to use ES6 to save the lexical scope using arrow functions
+	setTimeout(()=> {
+		modal.fadeOut('slow');
+	},9000);
+}

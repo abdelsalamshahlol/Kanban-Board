@@ -66,7 +66,7 @@ function updateProjectList() {
 			<div class="project mx-1">
 				<div class="container">
 					<div class="row">
-						<a href="/project/${project.id}" data-name='project' class="kill-anchor">
+						<a href="/project?id=${project.id}" data-name='project' class="kill-anchor">
 							<div class="col-1">
 								<span class="d-flex flex-center">
 									<i class="fas fa-tasks"></i>
