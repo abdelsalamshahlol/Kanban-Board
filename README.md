@@ -27,7 +27,6 @@
 ```
 
 ## Screenshots
-
 ![enter image description here](imgs/home.png)
-~~~
 ![enter image description here](imgs/board.png)
+
