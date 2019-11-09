@@ -40,18 +40,19 @@ var Task = function(content, location, project_id, order) {
 	task.order = order === undefined ? 0 : order;
 	task.isComplete = false;
 	// Methods
-	task.updateLocation = updateLocation;
-	task.changeOrder = changeOrder;
-	task.changeStatus = changeStatus;
+	task.updateLocation = setLocation;
+	task.changeOrder = setOrder;
+	task.changeStatus = invertStatus;
 
 	return task;
 }
 
 // Function definations
 
-var updateLocation = function(_location) {
+var setLocation = function(_location) {
 	if(_location !== undefined && typeof _location === 'number' && _location >= 0 && _location <= 2){
 		this.location = _location;
+		console.warn('Location updated ' + _location)
 
 		return true;
 	}
@@ -59,7 +60,7 @@ var updateLocation = function(_location) {
 	return false;
 }
 
-var changeOrder = function(_order) {
+var setOrder = function(_order) {
 	if(_order !== undefined && typeof _order === 'number'){
 		this.order = _order;
 
@@ -69,6 +70,6 @@ var changeOrder = function(_order) {
 	return false;
 }
 
-var changeStatus = function() {
+var invertStatus = function() {
 	this.isComplete = !this.isComplete;
 }

@@ -41,6 +41,12 @@ function getProject(id){
 	});
 }
 
+function getProjectId(id){
+	return projectCollec.findIndex(function(project) {
+		return project.id === parseInt(id);
+	});
+}
+
 /*
 	======== End Core Functions ========
 */

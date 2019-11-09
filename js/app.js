@@ -40,7 +40,7 @@ $(function() {
 		// console.log(href , html , {routes:routes, page:routes[href]});
 		// Do the navigation and store the path in the history
 		let html = '';
-		console.log({router})
+		// console.log({router})
 		if(title !== undefined && href !== undefined){
 			// remove parameters from the route
 			// html = routes[href];
@@ -51,7 +51,7 @@ $(function() {
 			}
 			let id = href.substr(href.indexOf('=') + 1);
 			let withParam = href.substr(href.indexOf('?'));
-			console.log({_href,id,withParam})
+			// console.log({_href,id,withParam})
 
 			html = routes[_href];
 			router.current = href;
@@ -88,7 +88,7 @@ $(function() {
 
 		let href = src.attr('href');
 		let title = src.data('name');
-		console.log(href,title);
+		// console.log(href,title);
 		renderPage(title, href);
 		updateProjectList();
 

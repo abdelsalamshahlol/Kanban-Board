@@ -282,7 +282,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 2px;
     width: 90%;
     margin: 4% auto;
-    padding: 1.5rem;
+    padding: 0.5rem;
 }
 
 .sticky-note::after,
@@ -418,5 +418,17 @@ footer {
 .note-hover {
 	border-width: 0.12rem;
 	border-style: solid;
-	border-color: #fff;
+	border-color: #000;
+}
+
+.kill-anchor > .col > p {
+	font-size: 0.9rem;
+    font-family: Open Sans, cursive;
+    text-transform: initial;
+}
+
+.kill-anchor > .col > h3 {
+    font-weight: 100;
+    text-decoration: underline;
+    margin-bottom: 1.6%;
 }

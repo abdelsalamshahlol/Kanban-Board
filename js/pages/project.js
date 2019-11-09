@@ -7,7 +7,7 @@ var projectTemplate =
 <section id="containment-div">
 	<div class="container">
 		<div class="row">
-			<div class="col k-section bg-green no-gutter">
+			<div class="col k-section bg-green no-gutter" data-location="0">
 				<div class="section-title mx-1">
 					<h2 class="text-center text-white">Back Log</h2>
 					<hr class="mt-1 divider">
@@ -28,7 +28,7 @@ var projectTemplate =
 				</div>
 				<div id="backLog-column"></div>
 			</div>
-			<div class="col k-section bg-orange no-gutter" id="sss">
+			<div class="col k-section bg-orange no-gutter" data-location="1">
 				<div class="section-title mx-1">
 					<h2 class="text-center text-white">Doing</h2>
 					<hr class="mt-1 divider">
@@ -49,7 +49,7 @@ var projectTemplate =
 				</div>
 				<div id="doing-column"></div>						
 			</div>
-			<div class="col k-section bg-brown no-gutter">
+			<div class="col k-section bg-brown no-gutter" data-location="2">
 				<div class="section-title mx-1">
 					<h2 class="text-center text-white">Done</h2>
 					<hr class="mt-1 divider">
@@ -79,7 +79,7 @@ var projectTemplate =
 	==== Methods ====
 */
 
-
+var draggableNoteId;
 
 $('body').on('submit', '.task-form', function(e) {
 	e.preventDefault();
@@ -88,10 +88,11 @@ $('body').on('submit', '.task-form', function(e) {
 	let project_id = location.search.substring(4);
 	let project = getProject(project_id);
 	let content = src.find('input').val();
+	src.find('input').val('');
 	let order = project.tasks.length;
 	let _location = '';
 
-	console.log({f:getProject,project,project_id});
+	// console.log({f:getProject,project,project_id});
 
 	if(src.attr('id') === 'backlog-from'){
 		_location = 0;
@@ -120,7 +121,7 @@ $('body').on('submit', '.task-form', function(e) {
 
 function updateColumn(project, _location) {
 	let colSelector;
-
+	// alert('updating column '+ _location)
 	let data = project.tasks.filter(function(val, key) {
 		return val.location === _location ;
 	});
@@ -142,13 +143,12 @@ function updateColumn(project, _location) {
 		containment: '#containment-div',
 		stop: function(e, ui){
 			console.log('stopped');
+			draggableNoteId = parseInt($(this).attr('data-id'));
+			// console.log('ID from darg ' + draggableNoteId);
 		}
 	});
 }
 
-// function updateDoing(project) {
-
-// }
 
 function createTasksNode(tasks, target) {
 	let html = ``;
@@ -157,7 +157,7 @@ function createTasksNode(tasks, target) {
 	for (var task of tasks){
 	html += 
 		`
-		<div class="sticky-note mx-1">
+		<div class="sticky-note mx-1" data-id="${task.id}">
 			<div class="container">
 				<div class="row">
 					<a href="#" class="kill-anchor">
@@ -179,15 +179,43 @@ function createTasksNode(tasks, target) {
 	$('body').find(target).append(html);
 
 	$('.k-section').droppable({
-	accept:'.sticky-note',
-	classes:{
-		"ui-droppable-active": 'note-active',
-		"ui-droppable-hover": 'note-hover'
-	},
-	drop: function(event, ui) {
-		// $(this).find('.section-title').addClass('highlight-section');
-		//Do something else with 
-		console.log({event,ui});
+		accept:'.sticky-note',
+		classes:{
+			"ui-droppable-active": 'note-active',
+			"ui-droppable-hover": 'note-hover'
+		},
+		drop: function(event, ui) {
+			// Get Task and Location id from the drop event
+
+			let _location = $(this).attr('data-location');
+				_location = _location !== undefined ? parseInt(_location) : '';
+
+			// let taskId = JSON.parse(JSON.stringify(ui.helper[0].dataset));
+			// 	taskId = parseInt(taskId.id);
+			// console.log(ui.draggable.attr('data-id'))
+			let taskId = parseInt(ui.draggable.attr('data-id')); 
+			// console.log({taskId, } )
+			updateLocation(_location, taskId );
+			$(ui.draggable).hide();
+		}
+	});
+}
+
+function updateLocation(_location, taskId) {
+	console.log(projectCollec)
+	if(taskId !== undefined){
+		console.log({newLocation: _location, taskId});
+
+		let project_id = parseInt(location.search.substring(4));
+		let projectIndex = getProjectId(project_id);
+		let task = projectCollec[projectIndex].getTask(taskId);
+
+		console.log({project: projectCollec[projectIndex], task, project_id})
+		task.updateLocation(_location);
+	
+		updateColumn(projectCollec[projectIndex], _location);
+		showModal('Success', 'Location updated', '!danger');
+			console.log(projectCollec)
 	}
-});
+
 }

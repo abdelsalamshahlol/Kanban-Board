@@ -3,7 +3,7 @@
 */
 
 var indexTemplate = 
-`	<h1 class="text-center headings-style mt-2 app-hero">Project Management</h1>
+`	<h1 class="text-center headings-style mt-2 app-hero">Kanban Board</h1>
 		<section id="home-section">
 			<div class="container">
 				<div class="row">
@@ -49,9 +49,12 @@ $('body').on('submit', '#create-new-project', function(e) {
 
 	if(projectTitle.val().length === 0){
 		showErrors(projectTitle,'Project title required.');
+		return false;
 	}
 
 	createProject(projectTitle.val(), projectDesc.val());
+	projectTitle.val('');
+	projectDesc.val('');
 });
 
 
@@ -82,6 +85,6 @@ function updateProjectList() {
 			</div>
 			`;
 
-		list.append(html);
+		list.append(html).hide().fadeIn();
 	}
 }
